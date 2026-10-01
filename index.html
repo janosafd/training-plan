@@ -83,6 +83,9 @@ a{color:inherit}
 .block.rehab .bhead h3{color:var(--rehab)}
 .block.cardio .bhead{background:var(--ball-soft)}
 .block.cardio .bhead h3{color:var(--ball)}
+.block.cool .bhead{background:#E6EEF7}
+.block.cool .bhead h3{color:#2B5D8C}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .block.cool .bhead{background:#16232F}:root:not([data-theme="light"]) .block.cool .bhead h3{color:#8DB8E0}}
 .ex{display:grid;grid-template-columns:28px 1fr auto;gap:4px 12px;padding:12px 16px;border-top:1px solid var(--line);align-items:start}
 .ex:first-of-type{border-top:0}
 .ex input{position:absolute;opacity:0;pointer-events:none}
@@ -271,6 +274,22 @@ section.part,#session{scroll-margin-top:96px}
     </div>
   </section>
 
+  <section class="part" id="relax">
+    <h2>练完怎么放松</h2>
+    <p class="intro">每天训练表最后一块就是当天的放松动作，照着做就行。下面是几个常见问题。</p>
+    <div class="grid2">
+      <div class="card"><h3>什么时候做</h3><ul class="plain">
+        <li>顺序是 <b>力量 → 有氧 → 放松</b>。有氧本身就在帮你降温，做完身体最热，这时候拉伸最拉得开</li>
+        <li>练之前别做长时间的静态拉伸，会让力量变小；练前做热身那几个动作就够了</li>
+        <li>腰不要直接用泡沫轴滚，腰用婴儿式、猫式放松</li></ul></div>
+      <div class="card"><h3>做多久、做几天</h3><ul class="plain">
+        <li>泡沫轴每个部位 <b class="num">60–90 秒</b>，找到最酸的点停 20–30 秒</li>
+        <li>静态拉伸每个 <b class="num">30 秒 × 2 次</b>，拉到有感觉、不疼就停</li>
+        <li><b>练完当天做一次就够</b>。第二、三天肌肉酸是正常的（一般 1–3 天就消），不用天天专门放松</li>
+        <li>第二天酸得厉害，打球前或睡前再滚 5 分钟泡沫轴就行；酸到走路都难受，那个部位就多歇一天</li></ul></div>
+    </div>
+  </section>
+
   <section class="part" id="day">
     <h2>你的一天</h2>
     <p class="intro">中午 12 点醒、凌晨 4 点睡，一天要吃 3 顿加 1 次加餐。打球前 2 小时吃完晚饭，练完 1 小时内补蛋白。</p>
@@ -331,6 +350,20 @@ section.part,#session{scroll-margin-top:96px}
 <script>
 // 动作要点：准备 / 握法 / 过程 / 呼吸 / 别犯
 const TIPS = {
+ "Latissimus_Dorsi-SMR":{准备:"侧躺，泡沫轴放在腋下往下一点（背阔肌），下面那只手伸直过头放松",过程:"身体小幅度上下滚，从腋下滚到肋骨下沿，可以稍微前后转身找酸点，找到停 20–30 秒",呼吸:"慢慢深呼吸，越酸越要放松",别犯:"直接压在腋窝或肩关节上、滚得太快"},
+ "Rhomboids-SMR":{准备:"仰躺，泡沫轴横放在肩胛骨中间，双手抱在胸前，屁股抬起或着地都行",过程:"脚蹬地让身体前后滚，范围是肩胛骨下沿到上背",呼吸:"正常深呼吸",别犯:"滚到腰上（腰别用泡沫轴直接滚）、仰着头"},
+ "Shoulder_Stretch":{准备:"站直或坐直，肩膀放松往下",过程:"一只手伸直横过胸前，另一只手扣住它的手肘往身体方向拉，肩膀后面有拉伸感就停住，30 秒换边",呼吸:"拉住后慢慢呼吸",别犯:"耸肩、身体跟着转"},
+ "Upper_Back_Stretch":{准备:"站直，双手十指相扣，掌心朝外",过程:"手往前推远，背拱起来像抱一个大球，下巴微收，感觉肩胛骨中间被拉开",呼吸:"每次呼气再往前推一点",别犯:"只伸手不拱背"},
+ "Childs_Pose":{准备:"跪坐，膝盖分开与髋同宽，脚背贴地",过程:"屁股坐向脚跟，上身往前趴，双手往前伸远，额头贴地，整个腰背放松",呼吸:"用肚子深呼吸，每次呼气再往下沉一点",别犯:"屁股翘起来离脚跟太远"},
+ "Cat_Stretch":{准备:"四点跪，手在肩膀正下方，膝盖在髋正下方",过程:"吸气时塌腰、抬头看前方；呼气时拱背、低头看肚脐，慢慢来回",呼吸:"一个来回一次深呼吸",别犯:"动作太快、用力往下压腰"},
+ "Quadriceps-SMR":{准备:"趴下，泡沫轴放在大腿前面，前臂撑地像平板支撑",过程:"用手臂推拉身体，从膝盖上方滚到大腿根，找到酸点停 20–30 秒，脚尖往里往外转可以滚到大腿内外侧",呼吸:"慢慢深呼吸",别犯:"滚到膝盖骨上、塌腰"},
+ "Hamstring-SMR":{准备:"坐地上，泡沫轴放在大腿后面，双手撑在身后",过程:"屁股抬起，从膝盖后上方滚到屁股下面，一条腿叠在另一条上压力更大",呼吸:"慢慢深呼吸",别犯:"滚到膝窝"},
+ "Piriformis-SMR":{准备:"坐在泡沫轴上，一只脚踝搭在另一侧膝盖上（翘二郎腿），手撑地",过程:"身体往翘腿那边倾斜，小幅度滚屁股外侧，酸点停 20–30 秒，换边",呼吸:"慢慢深呼吸",别犯:"滚到腰上"},
+ "Calves-SMR":{准备:"坐地上，泡沫轴放在小腿下，双手撑地把屁股抬起",过程:"从脚踝上方滚到膝盖下方，脚尖左右转能滚到小腿两侧，叠腿压力更大",呼吸:"慢慢深呼吸",别犯:"滚到膝窝、在跟腱上用力压"},
+ "Kneeling_Hip_Flexor":{准备:"单膝跪地（膝盖下垫毛巾），另一只脚在前面踩地，两个膝盖都弯成 90°",过程:"收紧跪地那侧的屁股，身体直立，髋往前送，感觉跪地那条腿的大腿根前面拉开，保持 30 秒换边",呼吸:"慢慢呼吸",别犯:"塌腰往前顶、身体往前倒"},
+ "Hamstring_Stretch":{准备:"仰躺，一条腿伸直放地上，另一条腿抬起来，用毛巾或弹力带套住脚掌",过程:"抬起的腿尽量伸直，用手把它往身体方向拉，大腿后面有拉伸感就停住 30 秒",呼吸:"每次呼气拉近一点点",别犯:"屁股离地、膝盖弯了、硬拉到疼"},
+ "Knee_Across_The_Body":{准备:"仰躺，双腿伸直",过程:"一条腿弯曲倒向另一侧，用对侧手轻压膝盖，另一只手往外伸，两边肩膀都贴地，感觉屁股和腰侧拉开",呼吸:"慢慢呼吸",别犯:"肩膀离地、用力压膝盖"},
+ "Calf_Stretch_Hands_Against_Wall":{准备:"面向墙，双手扶墙，一只脚在前，一只脚往后撤一大步",过程:"后腿伸直，脚跟踩死地面，身体往墙靠，小腿后面拉开 30 秒，换边",呼吸:"慢慢呼吸",别犯:"后脚跟抬起来、后脚尖朝外"},
  "Hack_Squat":{准备:"背和屁股贴紧靠垫，肩膀卡在肩垫下面，双脚踩在踏板中间、与肩同宽，脚尖略朝外",握法:"双手抓住肩垫两侧的把手",过程:"打开保险杆，慢慢蹲到大腿和踏板平行（或略低），膝盖跟脚尖同方向，全脚掌发力推起，推到腿快伸直但膝盖别锁死，做完一组记得把保险杆合上再出来",呼吸:"下蹲吸气，推起呼气",别犯:"屁股离开靠垫、脚跟抬起、膝盖往里扣、推到顶膝盖锁死、忘了合保险杆"},
  "External_Rotation_with_Band":{准备:"弹力带一头固定在肘部高度，侧身站，练的那只手离固定点远",握法:"掌心朝向肚子，拳头竖着（拇指朝上）",过程:"肘夹紧身体（可以夹条毛巾），只让前臂像开门一样往外转，转到不能再转停 1 秒，慢慢回来",呼吸:"往外转呼气，回来吸气",别犯:"肘离开身体、身体跟着转、耸肩"},
  "Internal_Rotation_with_Band":{准备:"侧身站，练的那只手靠近固定点",握法:"拇指朝上，掌心朝向身体",过程:"肘贴身，前臂从外往肚子方向转，转到贴近肚子停 1 秒，慢慢放回",呼吸:"往里拉呼气，放回吸气",别犯:"用身体扭转带动、肘往前跑"},
@@ -365,6 +398,33 @@ const TIPS = {
  "Walking_Treadmill":{准备:"坡度 10，速度 5 km/h 起步",握法:"手自然摆臂，不扶把手",过程:"身体站直别后仰，正常迈步，脚跟先着地",呼吸:"能说话但有点喘",别犯:"抓着扶手往后仰（坡度白调了）、步子太大"}
 };
 
+const COOL = {
+  upper:[
+    ["Latissimus_Dorsi-SMR","泡沫轴 · 背阔肌","每边 60 秒","","泡沫轴","侧躺滚腋下往下那一片，酸点停 20–30 秒"],
+    ["Rhomboids-SMR","泡沫轴 · 上背","60 秒","","泡沫轴","横放在肩胛骨中间前后滚，别滚到腰"],
+    ["Shoulder_Stretch","交叉拉肩（肩后侧）","每边 30 秒 × 2","","徒手","手臂横过胸前，另一只手扣肘往身上拉"],
+    ["Upper_Back_Stretch","抱球拉上背","30 秒 × 2","","徒手","十指相扣往前推，背拱起来"],
+    ["Childs_Pose","婴儿式（放松腰）","45 秒","","徒手","屁股坐向脚跟，手往前伸，额头贴地"],
+    ["Cat_Stretch","猫式（放松腰）","10 次","","徒手","吸气塌腰抬头，呼气拱背低头"]
+  ],
+  lower:[
+    ["Quadriceps-SMR","泡沫轴 · 大腿前侧","每边 90 秒","","泡沫轴","从膝盖上方滚到髋，酸点停 20–30 秒"],
+    ["Hamstring-SMR","泡沫轴 · 大腿后侧","每边 60 秒","","泡沫轴","屁股抬起来滚，叠腿压力更大"],
+    ["Piriformis-SMR","泡沫轴 · 屁股","每边 60 秒","","泡沫轴","翘二郎腿坐在轴上，往翘腿那边倾斜"],
+    ["Calves-SMR","泡沫轴 · 小腿","每边 60 秒","","泡沫轴","脚尖左右转，滚到小腿两侧"],
+    ["Kneeling_Hip_Flexor","跪姿拉髋前侧","每边 30 秒 × 2","","徒手","收紧屁股往前送髋，别塌腰"],
+    ["Hamstring_Stretch","仰躺拉大腿后侧","每边 30 秒 × 2","","毛巾或弹力带","腿伸直往身上拉，屁股别离地"],
+    ["Knee_Across_The_Body","仰躺转体（屁股+腰）","每边 30 秒","","徒手","腿倒向对侧，两边肩膀贴地"],
+    ["Calf_Stretch_Hands_Against_Wall","扶墙拉小腿","每边 30 秒","","徒手","后腿伸直，脚跟踩死地面"]
+  ],
+  cardio:[
+    ["Childs_Pose","婴儿式（放松腰）","45 秒","","徒手","屁股坐向脚跟，手往前伸"],
+    ["Cat_Stretch","猫式","10 次","","徒手","吸气塌腰，呼气拱背"],
+    ["Kneeling_Hip_Flexor","跪姿拉髋前侧","每边 30 秒","","徒手","收紧屁股往前送髋"],
+    ["Hamstring_Stretch","仰躺拉大腿后侧","每边 30 秒","","毛巾或弹力带","腿伸直往身上拉"],
+    ["Calf_Stretch_Hands_Against_Wall","扶墙拉小腿","每边 30 秒","","徒手","后脚跟踩死地面"]
+  ]
+};
 const REHAB = {
   title: "肩部热身", meta: "上肢日练前 6 分钟 · 弹力带",
   list: [
@@ -472,7 +532,7 @@ function renderSession(){
   const saved=store.get("done:"+dk)||{};
   const pillCls={ball:"ball",rehab:"rehab",rest:"rest"}[p.kind];
   const upper=k.startsWith("upper");
-  let n=0; const no=()=>"①②③④"[n++];
+  let n=0; const no=()=>"①②③④⑤"[n++];
   let html=`<div class="shead"><h2>${WD[wi]} · ${p.name}</h2><span class="pill ${pillCls}">${d.getMonth()+1}月${d.getDate()}日${sel===0?" · 今天":""}</span><span class="progress" id="prog"></span></div><p class="snote">${p.note}</p>`;
   if(upper){
     html+=`<div class="block rehab"><div class="bhead"><h3>${no()} ${REHAB.title}</h3><span class="meta">${REHAB.meta}</span></div>`;
@@ -488,6 +548,12 @@ function renderSession(){
     const c=CARDIO[p.cardio];
     html+=`<div class="block cardio"><div class="bhead"><h3>${no()} 练后有氧</h3><span class="meta">力量练完马上做</span></div>`;
     html+=exRow("c0",c[0],c[1],c[2],"",c[3],c[4],!!saved["c0"]);
+    html+=`</div>`;
+  }
+  const ck = upper?"upper":(k.startsWith("lower")?"lower":(k==="cardio"?"cardio":null));
+  if(ck){
+    html+=`<div class="block cool"><div class="bhead"><h3>${no()} 放松</h3><span class="meta">有氧做完最后做 · 约 8–10 分钟</span></div>`;
+    COOL[ck].forEach((e,j)=>{ const uid=`s${j}`; html+=exRow(uid,e[0],e[1],e[2],e[3],e[4],e[5],!!saved[uid]); });
     html+=`</div>`;
   }
   const s=document.getElementById("session"); s.innerHTML=html;
@@ -520,7 +586,7 @@ renderDays(); renderSession();
 document.querySelector('.wrap').id='top';
 const tabs=[...document.querySelectorAll('.tabbar a')];
 tabs.forEach(a=>a.addEventListener('click',e=>{e.preventDefault();const t=a.dataset.t;(t==='top'?window.scrollTo({top:0,behavior:'smooth'}):document.getElementById(t).scrollIntoView({behavior:'smooth'}));}));
-const secs=['progress','day','food'].map(id=>document.getElementById(id));
+const secs=['progress','relax','day','food'].map(id=>document.getElementById(id));
 addEventListener('scroll',()=>{let cur='top';secs.forEach(s=>{if(s&&s.getBoundingClientRect().top<innerHeight*0.4)cur=s.id});tabs.forEach(a=>a.classList.toggle('on',a.dataset.t===cur));},{passive:true});
 if('serviceWorker' in navigator){addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));}
 </script>
