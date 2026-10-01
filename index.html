@@ -2,7 +2,14 @@
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#D9582B">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="训练">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-180.png">
 <title>罗哥训练周表</title>
 <style>
 :root{
@@ -156,6 +163,37 @@ ul.plain li{margin:3px 0}
 .foot{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);color:var(--sub);font-size:12.5px}
 @media (max-width:480px){.day .tg{font-size:10px}.day .dt{font-size:17px}.dose b{font-size:19px}.shead h2{font-size:22px}}
 @media (prefers-reduced-motion:no-preference){.session{animation:fade .25s ease}@keyframes fade{from{opacity:.4}to{opacity:1}}}
+
+/* ===== 手机 App 版 ===== */
+img{max-width:100%}
+html{-webkit-text-size-adjust:100%}
+body{padding-bottom:calc(72px + env(safe-area-inset-bottom,0px));-webkit-tap-highlight-color:transparent}
+.tabbar{position:fixed;left:0;right:0;bottom:0;z-index:40;display:grid;grid-template-columns:repeat(4,1fr);background:var(--paper);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
+.tabbar a{display:flex;flex-direction:column;align-items:center;gap:2px;padding:9px 0 8px;text-decoration:none;color:var(--sub);font-size:12px;font-weight:700}
+.tabbar a b{font-size:19px;line-height:1}
+.tabbar a.on{color:var(--ball)}
+section.part,#session{scroll-margin-top:96px}
+@media (max-width:560px){
+  .wrap{padding-block:14px 24px}
+  .top{grid-template-columns:1fr;gap:10px}
+  .top h1{font-size:30px}
+  .stats{gap:14px}.stat b{font-size:24px}
+  .lede{font-size:13.5px}
+  .week{padding-block:8px;margin-inline:-16px;padding-inline:16px;overflow-x:auto;scrollbar-width:none}
+  .week::-webkit-scrollbar{display:none}
+  .days{grid-template-columns:repeat(7,minmax(64px,1fr));min-width:470px}
+  .day{padding:8px 2px}
+  .shead h2{font-size:21px}
+  .block{border-radius:12px;margin-inline:-4px}
+  .ex{grid-template-columns:30px 1fr auto;gap:6px 10px;padding:14px 12px}
+  .ex label.ck{grid-column:1;grid-row:1;width:26px;height:26px}
+  .ex .nm{grid-column:2;grid-row:1;font-size:16px;align-self:center}
+  .ex .dose{grid-column:3;grid-row:1;text-align:right}
+  .ex .demo{grid-column:1/-1;grid-row:2;width:100%;aspect-ratio:3/2;border-radius:10px}
+  .ex .cue{grid-column:1/-1;grid-row:3;font-size:14px}
+  .ex .demo.big{grid-row:auto}
+  .timeline{grid-template-columns:repeat(2,1fr)}
+}
 </style>
 </head>
 <body>
@@ -420,6 +458,19 @@ function updateProg(){
 }
 renderDays(); renderSession();
 </script>
-
+<nav class="tabbar" aria-label="切换">
+  <a href="#top" class="on" data-t="top"><b>🏋️</b>训练</a>
+  <a href="#progress" data-t="progress"><b>📈</b>加重量</a>
+  <a href="#day" data-t="day"><b>⏰</b>作息</a>
+  <a href="#food" data-t="food"><b>🍚</b>吃什么</a>
+</nav>
+<script>
+document.querySelector('.wrap').id='top';
+const tabs=[...document.querySelectorAll('.tabbar a')];
+tabs.forEach(a=>a.addEventListener('click',e=>{e.preventDefault();const t=a.dataset.t;(t==='top'?window.scrollTo({top:0,behavior:'smooth'}):document.getElementById(t).scrollIntoView({behavior:'smooth'}));}));
+const secs=['progress','day','food'].map(id=>document.getElementById(id));
+addEventListener('scroll',()=>{let cur='top';secs.forEach(s=>{if(s&&s.getBoundingClientRect().top<innerHeight*0.4)cur=s.id});tabs.forEach(a=>a.classList.toggle('on',a.dataset.t===cur));},{passive:true});
+if('serviceWorker' in navigator){addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));}
+</script>
 </body>
 </html>
