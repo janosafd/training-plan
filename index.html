@@ -181,8 +181,10 @@ section.part,#session{scroll-margin-top:96px}
   .lede{font-size:13.5px}
   .week{padding-block:8px;margin-inline:-16px;padding-inline:16px;overflow-x:auto;scrollbar-width:none}
   .week::-webkit-scrollbar{display:none}
-  .days{grid-template-columns:repeat(7,minmax(64px,1fr));min-width:470px}
+  .days{grid-template-columns:repeat(7,minmax(68px,1fr));min-width:500px}
   .day{padding:8px 2px}
+  .day .wd{white-space:nowrap;font-size:11px}
+  .day.today .wd::after{content:"·今天"}
   .shead h2{font-size:21px}
   .block{border-radius:12px;margin-inline:-4px}
   .ex{grid-template-columns:30px 1fr auto;gap:6px 10px;padding:14px 12px}
