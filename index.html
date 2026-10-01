@@ -350,7 +350,7 @@ section.part,#session{scroll-margin-top:96px}
 <script>
 // 动作要点：准备 / 握法 / 过程 / 呼吸 / 别犯
 const TIPS = {
- "Latissimus_Dorsi-SMR":{准备:"侧躺，泡沫轴放在腋下往下一点（背阔肌），下面那只手伸直过头放松",过程:"身体小幅度上下滚，从腋下滚到肋骨下沿，可以稍微前后转身找酸点，找到停 20–30 秒",呼吸:"慢慢深呼吸，越酸越要放松",别犯:"直接压在腋窝或肩关节上、滚得太快"},
+ "Latissimus_Dorsi-SMR":{准备:"仰躺屈膝，泡沫轴竖着垫在背后一侧、腋窝后下方，双手抱在胸前",过程:"身体往这一侧转，把重量压到背阔肌上，脚蹬地小幅度上下滚，从腋窝后下方滚到肋骨下沿，找到酸点停 20–30 秒，换另一侧",呼吸:"慢慢深呼吸，越酸越要放松",别犯:"直接压在腋窝或肩关节上、滚得太快"},
  "Rhomboids-SMR":{准备:"仰躺，泡沫轴横放在肩胛骨中间，双手抱在胸前，屁股抬起或着地都行",过程:"脚蹬地让身体前后滚，范围是肩胛骨下沿到上背",呼吸:"正常深呼吸",别犯:"滚到腰上（腰别用泡沫轴直接滚）、仰着头"},
  "Shoulder_Stretch":{准备:"站直或坐直，肩膀放松往下",过程:"一只手伸直横过胸前，另一只手扣住它的手肘往身体方向拉，肩膀后面有拉伸感就停住，30 秒换边",呼吸:"拉住后慢慢呼吸",别犯:"耸肩、身体跟着转"},
  "Upper_Back_Stretch":{准备:"站直，双手十指相扣，掌心朝外",过程:"手往前推远，背拱起来像抱一个大球，下巴微收，感觉肩胛骨中间被拉开",呼吸:"每次呼气再往前推一点",别犯:"只伸手不拱背"},
@@ -400,7 +400,7 @@ const TIPS = {
 
 const COOL = {
   upper:[
-    ["Latissimus_Dorsi-SMR","泡沫轴 · 背阔肌","每边 60 秒","","泡沫轴","侧躺滚腋下往下那一片，酸点停 20–30 秒"],
+    ["Latissimus_Dorsi-SMR","泡沫轴 · 背阔肌","每边 60 秒","","泡沫轴","泡沫轴放在腋窝后下方，身体往这一侧转着压上去"],
     ["Rhomboids-SMR","泡沫轴 · 上背","60 秒","","泡沫轴","横放在肩胛骨中间前后滚，别滚到腰"],
     ["Shoulder_Stretch","交叉拉肩（肩后侧）","每边 30 秒 × 2","","徒手","手臂横过胸前，另一只手扣肘往身上拉"],
     ["Upper_Back_Stretch","抱球拉上背","30 秒 × 2","","徒手","十指相扣往前推，背拱起来"],
@@ -521,7 +521,7 @@ function exRow(uid, id, name, dose, rest, start, cue, checked){
     <input type="checkbox" id="${uid}" ${checked?"checked":""}><label class="ck" for="${uid}" aria-label="完成：${name}"></label>
     <div class="demo" role="button" tabindex="0" aria-label="放大看${name}的动作"><img src="demo/${id}_0.jpg" alt="${name} 起始姿势"><img class="f2" src="demo/${id}_1.jpg" alt="${name} 结束姿势"><span class="tagd">动作演示</span></div>
     <div class="nm">${name}</div>
-    <div class="dose"><b>${dose}</b>${start?`<small class="st">起始 ${start}</small>`:""}${rest&&rest!=="—"?`<small>休息 ${rest}</small>`:""}</div>
+    <div class="dose"><b>${dose}</b>${start?`<small class="st">${uid.startsWith("s")?"工具":"起始"} ${start}</small>`:""}${rest&&rest!=="—"?`<small>休息 ${rest}</small>`:""}</div>
     <p class="cue">${cue}</p>
     ${TIPS[id]?`<details class="tips" open><summary>动作要点 · 怎么做更标准</summary><dl>${Object.entries(TIPS[id]).map(([k,v])=>`<div class="tp${k==='别犯'?' bad':''}"><dt>${k}</dt><dd>${v}</dd></div>`).join('')}</dl></details>`:''}
   </div>`;
