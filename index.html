@@ -350,6 +350,7 @@ section.part,#session{scroll-margin-top:96px}
 <script>
 // 动作要点：准备 / 握法 / 过程 / 呼吸 / 别犯
 const TIPS = {
+ "Reverse_Hack_Squat":{准备:"面朝靠垫站进去，胸口和肚子贴住靠垫，肩膀卡在肩垫下面；双脚踩在踏板中间、与肩同宽，脚尖略朝外",握法:"双手握住肩垫两侧的把手",过程:"打开保险，屁股往后坐、往下蹲，上身贴着靠垫跟着往前倾，蹲到大腿和踏板平行，全脚掌（偏脚跟）发力推起，推到腿快伸直、膝盖别锁死；做完一组先合上保险再出来。这个方向的哈克屁股和大腿后侧用得更多，蹲的时候多想着往后坐",呼吸:"下蹲吸气，推起呼气",别犯:"胸口离开靠垫、脚跟抬起、膝盖往里扣、塌腰、推到顶膝盖锁死、忘了合保险"},
  "Latissimus_Dorsi-SMR":{准备:"仰躺屈膝，泡沫轴竖着垫在背后一侧、腋窝后下方，双手抱在胸前",过程:"身体往这一侧转，把重量压到背阔肌上，脚蹬地小幅度上下滚，从腋窝后下方滚到肋骨下沿，找到酸点停 20–30 秒，换另一侧",呼吸:"慢慢深呼吸，越酸越要放松",别犯:"直接压在腋窝或肩关节上、滚得太快"},
  "Rhomboids-SMR":{准备:"仰躺，泡沫轴横放在肩胛骨中间，双手抱在胸前，屁股抬起或着地都行",过程:"脚蹬地让身体前后滚，范围是肩胛骨下沿到上背",呼吸:"正常深呼吸",别犯:"滚到腰上（腰别用泡沫轴直接滚）、仰着头"},
  "Shoulder_Stretch":{准备:"站直或坐直，肩膀放松往下",过程:"一只手伸直横过胸前，另一只手扣住它的手肘往身体方向拉，肩膀后面有拉伸感就停住，30 秒换边",呼吸:"拉住后慢慢呼吸",别犯:"耸肩、身体跟着转"},
@@ -459,9 +460,9 @@ const PLANS = {
       ["Hammer_Curls","锤式弯举","2×12","45 秒","5–6 kg/只","掌心相对，慢放"],
       ["Dumbbell_One-Arm_Triceps_Extension","单臂哑铃颈后臂屈伸","2×12/边","45 秒","4–5 kg","大臂贴耳朵不动，只弯手肘"]
     ]},
-  lowerA:{tag:"下肢A",name:"下肢 A · 哈克 + 哑铃",kind:"ball",note:"哈克深蹲是主项，背靠着机器、轨迹固定，新手最容易练到大腿前侧又不怕腰受力，先做它。",cardio:"bike",
+  lowerA:{tag:"下肢A",name:"下肢 A · 哈克 + 哑铃",kind:"ball",note:"反向哈克深蹲是主项：面朝靠垫、轨迹固定，屁股和大腿都练得到，腰受力小，先做它。演示图是你健身房那台机器。",cardio:"bike",
     list:[
-      ["Hack_Squat","哈克深蹲（机器）","4×10","2 分钟","先不加片试一组，轻松就每边加 10 kg","背和肩贴紧靠垫，蹲到大腿平行，脚跟发力推起"],
+      ["Reverse_Hack_Squat","反向哈克深蹲（机器）","4×10","2 分钟","先不加片试一组，轻松就每边加 10 kg","面朝靠垫，胸口贴垫，屁股往后坐着蹲，脚跟发力推起"],
       ["Stiff-Legged_Dumbbell_Deadlift","哑铃直腿硬拉","3×10","90 秒","10–12 kg/只","膝盖微弯，屁股往后推，哑铃贴腿下到小腿中间"],
       ["Dumbbell_Lunges","哑铃箭步蹲","2×10/边","60 秒","5–6 kg/只","步子迈大，后膝往地面下，前腿发力"],
       ["Butt_Lift_Bridge","臀桥","3×15","45 秒","徒手","脚跟蹬地，屁股顶到最高夹紧 1 秒"],
@@ -519,7 +520,7 @@ function renderDays(){
 function exRow(uid, id, name, dose, rest, start, cue, checked){
   return `<div class="ex${checked?" done":""}">
     <input type="checkbox" id="${uid}" ${checked?"checked":""}><label class="ck" for="${uid}" aria-label="完成：${name}"></label>
-    <div class="demo" role="button" tabindex="0" aria-label="放大看${name}的动作"><img src="demo/${id}_0.jpg" alt="${name} 起始姿势"><img class="f2" src="demo/${id}_1.jpg" alt="${name} 结束姿势"><span class="tagd">动作演示</span></div>
+    <div class="demo" role="button" tabindex="0" aria-label="放大看${name}的动作"><img src="demo/${id}_0.jpg" alt="${name} 起始姿势"><img class="f2" src="demo/${id}_1.jpg" alt="${name} 结束姿势"><span class="tagd">${id==="Reverse_Hack_Squat"?"你健身房这台":"动作演示"}</span></div>
     <div class="nm">${name}</div>
     <div class="dose"><b>${dose}</b>${start?`<small class="st">${uid.startsWith("s")?"工具":"起始"} ${start}</small>`:""}${rest&&rest!=="—"?`<small>休息 ${rest}</small>`:""}</div>
     <p class="cue">${cue}</p>
