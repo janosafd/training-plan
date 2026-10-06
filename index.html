@@ -225,7 +225,7 @@ section.part,#session{scroll-margin-top:96px}
       <div class="stat"><b class="num">82</b><small>体重 kg（164斤）</small></div>
       <div class="stat"><b class="num">22.5</b><small>卧推 kg（空杆+2.5）</small></div>
     </div>
-    <p class="lede">按你现在的力量水平（卧推空杆+2.5 kg）从新手起步：上肢、下肢各练 2 次，另外 2 天只做有氧和核心，周一休息。全部是自由重量和健身房常见的下拉、划船器械，每个动作都写了第一次该用多重，做完还能多做 3 个以上就下次加。</p>
+    <p class="lede">按你现在的力量水平（卧推空杆+2.5 kg）从新手起步：上肢、下肢各练 2 次，另外 2 天只做有氧和核心，周一休息。同一个部位两次训练之间至少隔 2 天，上肢练完第二天练下肢，正好互相恢复。全部是自由重量和健身房常见的下拉、划船器械，每个动作都写了第一次该用多重，做完还能多做 3 个以上就下次加。</p>
   </header>
 
   <nav class="week" aria-label="一周安排">
@@ -489,7 +489,7 @@ const PLANS = {
   rest:{tag:"休息",name:"休息",kind:"rest",note:"不去健身房，打球照常。4 点睡到 12 点刚好 8 小时，别熬更晚。",cardio:null,list:[]}
 };
 // 周一=0
-const WEEK = ["rest","lowerB","cardio","upperA","lowerA","cardio","upperB"];
+const WEEK = ["rest","upperA","lowerB","cardio","upperB","lowerA","cardio"];
 const WD = ["周一","周二","周三","周四","周五","周六","周日"];
 
 const now = new Date();
