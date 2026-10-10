@@ -58,7 +58,7 @@ a{color:inherit}
 .day .wd{font-size:12px;color:var(--sub)}
 .day .dt{font-family:var(--display);font-size:20px;font-weight:700;line-height:1.1}
 .day .tg{font-size:11px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;padding-inline:2px}
-.day[data-k="rest"] .tg{color:var(--rest)}
+.day[data-k="rest"] .tg,.day[data-k="wedding"] .tg{color:var(--rest)}
 .day .tg{color:var(--ball)}
 .day.today{border-color:var(--ball)}
 .day.today .wd::after{content:" · 今天";color:var(--ball);font-weight:700}
@@ -486,8 +486,11 @@ const PLANS = {
       ["Flat_Bench_Lying_Leg_Raise","仰卧举腿","3×12","45 秒","徒手","慢慢放，腰别离开凳子"],
       ["Dead_Bug","死虫","2×10/边","45 秒","徒手","腰贴地，对侧手脚慢慢伸直"]
     ]},
-  rest:{tag:"休息",name:"休息",kind:"rest",note:"不去健身房，打球照常。4 点睡到 12 点刚好 8 小时，别熬更晚。",cardio:null,list:[]}
+  rest:{tag:"休息",name:"休息",kind:"rest",note:"不去健身房，打球照常。4 点睡到 12 点刚好 8 小时，别熬更晚。",cardio:null,list:[]},
+  wedding:{tag:"婚宴",name:"休息 · 喝喜酒",kind:"rest",note:"今天不练，有氧也不补。席上喝酒的话中间多喝水，酒后别去健身房也别打球；晚上照常睡够 8 小时，周二上肢照常练。",cardio:null,list:[]}
 };
+// 指定日期临时改安排（key 格式 年-月-日）
+const OVERRIDE = {"2026-10-11":"wedding"};
 // 周一=0
 const WEEK = ["rest","upperA","lowerB","cardio","upperB","lowerA","cardio"];
 const WD = ["周一","周二","周三","周四","周五","周六","周日"];
@@ -497,6 +500,7 @@ const base = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 const dateOf = i => { const d=new Date(base); d.setDate(base.getDate()+i); return d; };
 const wdIdx = d => (d.getDay()+6)%7;
 const key = d => d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+const planKey = d => { const iso=d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); return OVERRIDE[iso]||WEEK[wdIdx(d)]; };
 const store = {
   get(k){ try{ return JSON.parse(localStorage.getItem(k)||"null"); }catch(e){ return null; } },
   set(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
@@ -507,7 +511,7 @@ let sel = 0;
 function renderDays(){
   const box=document.getElementById("days"); box.innerHTML="";
   for(let i=0;i<7;i++){
-    const d=dateOf(i), k=WEEK[wdIdx(d)], p=PLANS[k];
+    const d=dateOf(i), k=planKey(d), p=PLANS[k];
     const b=document.createElement("button");
     b.className="day"+(i===0?" today":""); b.dataset.k=k; b.type="button";
     b.setAttribute("aria-pressed", i===sel?"true":"false");
@@ -529,7 +533,7 @@ function exRow(uid, id, name, dose, rest, start, cue, checked){
 }
 
 function renderSession(){
-  const d=dateOf(sel), wi=wdIdx(d), k=WEEK[wi], p=PLANS[k], dk=key(d);
+  const d=dateOf(sel), wi=wdIdx(d), k=planKey(d), p=PLANS[k], dk=key(d);
   const saved=store.get("done:"+dk)||{};
   const pillCls={ball:"ball",rehab:"rehab",rest:"rest"}[p.kind];
   const upper=k.startsWith("upper");
