@@ -350,6 +350,16 @@ section.part,#session{scroll-margin-top:96px}
 <script>
 // 动作要点：准备 / 握法 / 过程 / 呼吸 / 别犯
 const TIPS = {
+ "Dead_Bug@noarm":{准备:"仰躺，膝盖弯 90° 抬起，小腿和地面平行",握法:"两只手平放在身体两侧地上，全程不动（护右肩）",过程:"腰压紧地面，左右腿交替慢慢往前伸直，快碰地再收回",呼吸:"伸腿呼气，收回吸气",别犯:"腰离地、手撑地借力、憋气"},
+ "Flat_Bench_Lying_Leg_Raise@noarm":{准备:"平躺在瑜伽垫上（不用凳子），双腿伸直",握法:"两手平放身体两侧、掌心朝下，不抓任何东西（护右肩）",过程:"腿伸直（或微弯）抬到和地面垂直，慢慢放到离地一拳",呼吸:"抬起呼气，放下吸气",别犯:"腰拱起来、手按地借力、腿甩上去"},
+ "Dumbbell_Step_Ups@noarm":{准备:"站在凳子前，凳子高度到膝盖以下",握法:"不拿哑铃，两手自然垂着",过程:"一只脚整只踩上凳子，用上面那条腿发力站直，再慢慢下来",呼吸:"上去呼气，下来吸气",别犯:"下面那只脚蹬地借力、膝盖往里扣、晃的时候伸右手去抓东西"},
+ "Rocking_Standing_Calf_Raise@noarm":{准备:"前脚掌站在台阶边缘，脚跟悬空",握法:"只用左手扶墙或栏杆，右手垂着放松",过程:"脚跟往下放到最低停 1 秒，再踮到最高停 1 秒",呼吸:"踮起呼气，放下吸气",别犯:"右手去扶、速度太快弹起来"},
+ "Calf_Stretch_Hands_Against_Wall@noarm":{准备:"侧对墙站，只用左手扶墙，一只脚往后撤一大步",过程:"后腿伸直，脚跟踩死地面，身体微微前倾，小腿后面拉开 30 秒，换边",呼吸:"慢慢呼吸",别犯:"用右手推墙、后脚跟抬起来"},
+ "Knee_Across_The_Body@noarm":{准备:"仰躺，双腿伸直，右手放在身体旁边",过程:"一条腿弯曲倒向另一侧，只用左手轻扶膝盖，感觉屁股和腰侧拉开",呼吸:"慢慢呼吸",别犯:"右手往外伸展开、用力压膝盖"},
+ "Lying_Leg_Curls@noarm":{准备:"趴在机器上，脚踝后面卡在滚轴下，膝盖在垫子边缘外",握法:"左手轻扶把手，右手放在垫子上，不拽把手",过程:"把小腿往屁股方向勾，勾到最高停 1 秒，慢慢放回（3 秒）",呼吸:"勾起呼气，放下吸气",别犯:"双手死拽把手、屁股翘起来"},
+ "Bicycling_Stationary@noarm":{准备:"座椅调到脚踩最低点时膝盖微弯",握法:"左手轻搭把手，右手放腿上或轻搭不用力",过程:"阻力中低，稳定转速，上身别晃",呼吸:"均匀呼吸",别犯:"阻力太大、站起来骑"},
+ "Walking_Treadmill@noarm":{准备:"坡度 8–10，速度 5 km/h",握法:"不扶把手，右手臂小幅摆动就行",过程:"身体站直，正常迈步",呼吸:"能说话但有点喘",别犯:"抓扶手、右臂大幅甩"},
+
  "Reverse_Hack_Squat":{准备:"面朝靠垫站进去，胸口和肚子贴住靠垫，肩膀卡在肩垫下面；双脚踩在踏板中间、与肩同宽，脚尖略朝外",握法:"双手握住肩垫两侧的把手",过程:"打开保险，屁股往后坐、往下蹲，上身贴着靠垫跟着往前倾，蹲到大腿和踏板平行，全脚掌（偏脚跟）发力推起，推到腿快伸直、膝盖别锁死；做完一组先合上保险再出来。这个方向的哈克屁股和大腿后侧用得更多，蹲的时候多想着往后坐",呼吸:"下蹲吸气，推起呼气",别犯:"胸口离开靠垫、脚跟抬起、膝盖往里扣、塌腰、推到顶膝盖锁死、忘了合保险"},
  "Latissimus_Dorsi-SMR":{准备:"仰躺屈膝，泡沫轴竖着垫在背后一侧、腋窝后下方，双手抱在胸前",过程:"身体往这一侧转，把重量压到背阔肌上，脚蹬地小幅度上下滚，从腋窝后下方滚到肋骨下沿，找到酸点停 20–30 秒，换另一侧",呼吸:"慢慢深呼吸，越酸越要放松",别犯:"直接压在腋窝或肩关节上、滚得太快"},
  "Rhomboids-SMR":{准备:"仰躺，泡沫轴横放在肩胛骨中间，双手抱在胸前，屁股抬起或着地都行",过程:"脚蹬地让身体前后滚，范围是肩胛骨下沿到上背",呼吸:"正常深呼吸",别犯:"滚到腰上（腰别用泡沫轴直接滚）、仰着头"},
@@ -417,6 +427,11 @@ const COOL = {
     ["Hamstring_Stretch","仰躺拉大腿后侧","每边 30 秒 × 2","","毛巾或弹力带","腿伸直往身上拉，屁股别离地"],
     ["Knee_Across_The_Body","仰躺转体（屁股+腰）","每边 30 秒","","徒手","腿倒向对侧，两边肩膀贴地"],
     ["Calf_Stretch_Hands_Against_Wall","扶墙拉小腿","每边 30 秒","","徒手","后腿伸直，脚跟踩死地面"]
+  ],
+  noarm:[
+    ["Kneeling_Hip_Flexor","跪姿拉髋前侧","每边 30 秒 × 2","","徒手","两手叉腰，收紧屁股往前送髋"],
+    ["Knee_Across_The_Body@noarm","仰躺转体（屁股+腰）","每边 30 秒","","徒手","右手放身边，不往外伸"],
+    ["Calf_Stretch_Hands_Against_Wall@noarm","扶墙拉小腿","每边 30 秒","","徒手","只用左手扶墙"]
   ],
   cardio:[
     ["Childs_Pose","婴儿式（放松腰）","45 秒","","徒手","屁股坐向脚跟，手往前伸"],
@@ -486,11 +501,29 @@ const PLANS = {
       ["Flat_Bench_Lying_Leg_Raise","仰卧举腿","3×12","45 秒","徒手","慢慢放，腰别离开凳子"],
       ["Dead_Bug","死虫","2×10/边","45 秒","徒手","腰贴地，对侧手脚慢慢伸直"]
     ]},
+  shoulderLeg:{tag:"护肩·腿",name:"护肩日 1 · 只练腿",kind:"rehab",note:"右肩刚半脱位，今天和明天右手不提、不推、不撑、不举过头，也先别打球。全部动作双手都不用拿重量，组间休息时右手自然垂着。",cardio:null,cool:"noarm",block:"腿 + 核心（不用右肩）",blockMeta:"按顺序做，约 50 分钟",
+    list:[
+      ["Bicycling_Stationary@noarm","单车热身","8 分钟","—","阻力低","左手轻搭把手，右手不用力"],
+      ["Lying_Leg_Curls@noarm","俯卧腿弯举","4×12","60 秒","15–20 kg","右手放垫子上，不拽把手"],
+      ["Butt_Lift_Bridge","臀桥","4×15","45 秒","徒手","两手平放身体两侧，别用手撑地"],
+      ["Dumbbell_Step_Ups@noarm","徒手登阶","3×10/边","60 秒","徒手","不拿哑铃，晃了别伸右手去抓"],
+      ["Rocking_Standing_Calf_Raise@noarm","站姿提踵","3×15","45 秒","徒手","只用左手扶墙"],
+      ["Dead_Bug@noarm","死虫（只动腿）","3×10/边","45 秒","徒手","手平放地上不动，只交替伸腿"],
+      ["Bicycling_Stationary@noarm","单车收尾","15 分钟","—","阻力中低","最后放松着骑"]
+    ]},
+  shoulderCardio:{tag:"护肩·有氧",name:"护肩日 2 · 有氧 + 核心",kind:"rehab",note:"右肩第二天休息：只走路、骑车和不用手的核心。腿昨天练过，今天不加重量。",cardio:null,cool:"noarm",block:"有氧 + 核心（不用右肩）",blockMeta:"坡走和单车可以二选一",
+    list:[
+      ["Walking_Treadmill@noarm","跑步机坡走","35 分钟","—","坡度 8–10，时速 5 km","不扶把手，右手小幅摆"],
+      ["Bicycling_Stationary@noarm","单车（坡走累了换这个）","15 分钟","—","阻力中低","右手不用力"],
+      ["Flat_Bench_Lying_Leg_Raise@noarm","仰卧举腿（垫上）","3×12","45 秒","徒手","躺地上做，手平放不抓凳子"],
+      ["Dead_Bug@noarm","死虫（只动腿）","3×10/边","45 秒","徒手","手平放地上不动"],
+      ["Butt_Lift_Bridge","臀桥","3×15","45 秒","徒手","两手平放身体两侧"]
+    ]},
   rest:{tag:"休息",name:"休息",kind:"rest",note:"不去健身房，打球照常。4 点睡到 12 点刚好 8 小时，别熬更晚。",cardio:null,list:[]},
   wedding:{tag:"婚宴",name:"休息 · 喝喜酒",kind:"rest",note:"今天不练，有氧也不补。席上喝酒的话中间多喝水，酒后别去健身房也别打球；晚上照常睡够 8 小时，周二上肢照常练。",cardio:null,list:[]}
 };
 // 指定日期临时改安排（key 格式 年-月-日）
-const OVERRIDE = {"2026-10-11":"wedding"};
+const OVERRIDE = {"2026-10-11":"wedding","2026-10-13":"shoulderLeg","2026-10-14":"shoulderCardio"};
 // 周一=0
 const WEEK = ["rest","upperA","lowerB","cardio","upperB","lowerA","cardio"];
 const WD = ["周一","周二","周三","周四","周五","周六","周日"];
@@ -521,14 +554,15 @@ function renderDays(){
   }
 }
 
-function exRow(uid, id, name, dose, rest, start, cue, checked){
+function exRow(uid, key, name, dose, rest, start, cue, checked){
+  const id=key.split("@")[0], tip=TIPS[key]||TIPS[id];
   return `<div class="ex${checked?" done":""}">
     <input type="checkbox" id="${uid}" ${checked?"checked":""}><label class="ck" for="${uid}" aria-label="完成：${name}"></label>
     <div class="demo" role="button" tabindex="0" aria-label="放大看${name}的动作"><img src="demo/${id}_0.jpg" alt="${name} 起始姿势"><img class="f2" src="demo/${id}_1.jpg" alt="${name} 结束姿势"><span class="tagd">${id==="Reverse_Hack_Squat"?"你健身房这台":"动作演示"}</span></div>
     <div class="nm">${name}</div>
     <div class="dose"><b>${dose}</b>${start?`<small class="st">${uid.startsWith("s")?"工具":"起始"} ${start}</small>`:""}${rest&&rest!=="—"?`<small>休息 ${rest}</small>`:""}</div>
     <p class="cue">${cue}</p>
-    ${TIPS[id]?`<details class="tips" open><summary>动作要点 · 怎么做更标准</summary><dl>${Object.entries(TIPS[id]).map(([k,v])=>`<div class="tp${k==='别犯'?' bad':''}"><dt>${k}</dt><dd>${v}</dd></div>`).join('')}</dl></details>`:''}
+    ${tip?`<details class="tips" open><summary>动作要点 · 怎么做更标准</summary><dl>${Object.entries(tip).map(([k,v])=>`<div class="tp${k==='别犯'?' bad':''}"><dt>${k}</dt><dd>${v}</dd></div>`).join('')}</dl></details>`:''}
   </div>`;
 }
 
@@ -545,7 +579,7 @@ function renderSession(){
     html+=`</div>`;
   }
   if(p.list.length){
-    html+=`<div class="block${k==="cardio"?" cardio":""}"><div class="bhead"><h3>${no()} ${k==="cardio"?"有氧 + 核心":"力量训练"}</h3><span class="meta">${k==="cardio"?"两个有氧选一个做":"每组留 2–3 个余力"}</span></div>`;
+    html+=`<div class="block${k==="cardio"?" cardio":""}"><div class="bhead"><h3>${no()} ${p.block||(k==="cardio"?"有氧 + 核心":"力量训练")}</h3><span class="meta">${p.blockMeta||(k==="cardio"?"两个有氧选一个做":"每组留 2–3 个余力")}</span></div>`;
     p.list.forEach((e,j)=>{ const uid=`m${j}`; html+=exRow(uid,e[0],e[1],e[2],e[3],e[4],e[5],!!saved[uid]); });
     html+=`</div>`;
   }
@@ -555,7 +589,7 @@ function renderSession(){
     html+=exRow("c0",c[0],c[1],c[2],"",c[3],c[4],!!saved["c0"]);
     html+=`</div>`;
   }
-  const ck = upper?"upper":(k.startsWith("lower")?"lower":(k==="cardio"?"cardio":null));
+  const ck = p.cool || (upper?"upper":(k.startsWith("lower")?"lower":(k==="cardio"?"cardio":null)));
   if(ck){
     html+=`<div class="block cool"><div class="bhead"><h3>${no()} 放松</h3><span class="meta">有氧做完最后做 · 约 8–10 分钟</span></div>`;
     COOL[ck].forEach((e,j)=>{ const uid=`s${j}`; html+=exRow(uid,e[0],e[1],e[2],e[3],e[4],e[5],!!saved[uid]); });
