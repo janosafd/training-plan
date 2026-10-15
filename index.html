@@ -501,7 +501,7 @@ const PLANS = {
       ["Flat_Bench_Lying_Leg_Raise","仰卧举腿","3×12","45 秒","徒手","慢慢放，腰别离开凳子"],
       ["Dead_Bug","死虫","2×10/边","45 秒","徒手","腰贴地，对侧手脚慢慢伸直"]
     ]},
-  shoulderLeg:{tag:"护肩·腿",name:"护肩日 1 · 只练腿",kind:"rehab",note:"右肩刚半脱位，今天和明天右手不提、不推、不撑、不举过头，也先别打球。全部动作双手都不用拿重量，组间休息时右手自然垂着。",cardio:null,cool:"noarm",block:"腿 + 核心（不用右肩）",blockMeta:"按顺序做，约 50 分钟",
+  shoulderLeg:{tag:"护肩·腿",name:"护肩日 1 · 只练腿",kind:"rehab",note:"右肩还没恢复（抬不起来、发酸），这段时间右手不提、不推、不撑、不举过头，也先别打球。全部动作双手都不用拿重量。练完做 2 分钟「钟摆」：左手扶桌弯腰，右臂完全放松垂下，靠身体轻轻晃让手臂画小圈，不疼才做。",cardio:null,cool:"noarm",block:"腿 + 核心（不用右肩）",blockMeta:"按顺序做，约 50 分钟",
     list:[
       ["Bicycling_Stationary@noarm","单车热身","8 分钟","—","阻力低","左手轻搭把手，右手不用力"],
       ["Lying_Leg_Curls@noarm","俯卧腿弯举","4×12","60 秒","15–20 kg","右手放垫子上，不拽把手"],
@@ -511,7 +511,7 @@ const PLANS = {
       ["Dead_Bug@noarm","死虫（只动腿）","3×10/边","45 秒","徒手","手平放地上不动，只交替伸腿"],
       ["Bicycling_Stationary@noarm","单车收尾","15 分钟","—","阻力中低","最后放松着骑"]
     ]},
-  shoulderCardio:{tag:"护肩·有氧",name:"护肩日 2 · 有氧 + 核心",kind:"rehab",note:"右肩第二天休息：只走路、骑车和不用手的核心。腿昨天练过，今天不加重量。",cardio:null,cool:"noarm",block:"有氧 + 核心（不用右肩）",blockMeta:"坡走和单车可以二选一",
+  shoulderCardio:{tag:"护肩·有氧",name:"护肩日 2 · 有氧 + 核心",kind:"rehab",note:"右肩继续休息：只走路、骑车和不用手的核心。练完同样做 2 分钟「钟摆」放松，不疼才做。",cardio:null,cool:"noarm",block:"有氧 + 核心（不用右肩）",blockMeta:"坡走和单车可以二选一",
     list:[
       ["Walking_Treadmill@noarm","跑步机坡走","35 分钟","—","坡度 8–10，时速 5 km","不扶把手，右手小幅摆"],
       ["Bicycling_Stationary@noarm","单车（坡走累了换这个）","15 分钟","—","阻力中低","右手不用力"],
@@ -523,7 +523,8 @@ const PLANS = {
   wedding:{tag:"婚宴",name:"休息 · 喝喜酒",kind:"rest",note:"今天不练，有氧也不补。席上喝酒的话中间多喝水，酒后别去健身房也别打球；晚上照常睡够 8 小时，周二上肢照常练。",cardio:null,list:[]}
 };
 // 指定日期临时改安排（key 格式 年-月-日）
-const OVERRIDE = {"2026-10-11":"wedding","2026-10-13":"shoulderLeg","2026-10-14":"shoulderCardio"};
+const OVERRIDE = {"2026-10-11":"wedding","2026-10-13":"shoulderLeg","2026-10-14":"shoulderCardio",
+  "2026-10-15":"shoulderCardio","2026-10-16":"shoulderLeg","2026-10-17":"shoulderCardio","2026-10-18":"shoulderLeg","2026-10-20":"shoulderCardio","2026-10-21":"shoulderLeg"};
 // 周一=0
 const WEEK = ["rest","upperA","lowerB","cardio","upperB","lowerA","cardio"];
 const WD = ["周一","周二","周三","周四","周五","周六","周日"];
