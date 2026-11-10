@@ -594,6 +594,17 @@ const PLANS = {
       ["Rocking_Standing_Calf_Raise","站姿提踵","2×15","45 秒","徒手","最低点停 1 秒，最高点停 1 秒"],
       ["Plank","平板支撑","3×30 秒","45 秒","徒手","身体一条直线，别塌腰"]
     ]},
+  backDay:{tag:"练背",name:"练背 · 下拉 + 划船",kind:"ball",note:"昨天练了胸，今天单独练背，正好一推一拉。先做竖着往下拉的（练背宽），再做往后拉的划船（练背厚），最后面拉和弯举收尾。每个动作都先沉肩再拉，感觉发力在背上、不在手臂上。右肩照规矩：下拉只拉到胸前，不拉到脖子后面。",cardio:"stair",block:"力量训练（练背）",blockMeta:"每组留 1–2 个余力",
+    list:[
+      ["External_Rotation_with_Band","弹力带肩外旋（热身）","2×15","45 秒","最轻的弹力带","大臂贴身，小臂往外转，先把右肩唤醒"],
+      ["Wide-Grip_Lat_Pulldown","高位下拉（背宽）","4×10","90 秒","25–30 kg","握距比肩宽一拳，拉到上胸，先沉肩再弯手肘"],
+      ["Seated_Cable_Rows","坐姿划船（背厚）","4×10","90 秒","25–30 kg","V 把手，挺胸，拉到肚脐停 1 秒"],
+      ["One-Arm_Dumbbell_Row","单臂哑铃划船","3×10/边","60 秒","10–12 kg","手和膝撑凳，哑铃往裤兜方向拉"],
+      ["Close-Grip_Front_Lat_Pulldown","窄握下拉","3×12","60 秒","20–25 kg","拉到上胸，手肘往下往后夹"],
+      ["Face_Pull","面拉（后肩+护肩）","3×15","45 秒","最轻 1–2 格","拉到额头高度，手肘高于手腕，停 1 秒"],
+      ["Hammer_Curls","锤式弯举","2×12","45 秒","5–6 kg/只","掌心相对，慢放"],
+      ["Dumbbell_Bicep_Curl","哑铃弯举","2×12","45 秒","5–6 kg/只","大臂贴身不动，慢放"]
+    ]},
   rest:{tag:"休息",name:"休息",kind:"rest",note:"不去健身房，打球照常。4 点睡到 12 点刚好 8 小时，别熬更晚。",cardio:null,list:[]},
   wedding:{tag:"婚宴",name:"休息 · 喝喜酒",kind:"rest",note:"今天不练，有氧也不补。席上喝酒的话中间多喝水，酒后别去健身房也别打球；晚上照常睡够 8 小时，周二上肢照常练。",cardio:null,list:[]}
 };
@@ -601,7 +612,7 @@ const PLANS = {
 const OVERRIDE = {"2026-10-11":"wedding","2026-10-13":"shoulderLeg","2026-10-14":"shoulderCardio",
   "2026-10-15":"shoulderCardio","2026-10-16":"shoulderLeg","2026-10-17":"cardio","2026-10-18":"lowerA","2026-10-20":"upperReturn","2026-10-21":"upperReturn","2026-10-23":"lowerBsafe","2026-10-24":"upperReturn",
   "2026-11-04":"upperBback","2026-11-05":"lowerBback","2026-11-06":"cardioBack","2026-11-07":"lowerAback",
-  "2026-11-09":"chestLower","2026-11-10":"lowerB","2026-11-11":"upperA"};
+  "2026-11-09":"chestLower","2026-11-10":"backDay","2026-11-11":"lowerB"};
 // 周一=0
 const WEEK = ["rest","upperA","lowerB","cardio","upperB","lowerA","cardio"];
 const WD = ["周一","周二","周三","周四","周五","周六","周日"];
