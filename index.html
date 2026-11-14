@@ -124,6 +124,11 @@ a{color:inherit}
 @media (max-width:560px){.ex{grid-template-columns:26px 112px 1fr}.ex .demo{width:112px;grid-row:1/span 2}.ex .dose{grid-column:3;grid-row:2;text-align:left}.ex .cue{grid-column:1/-1;grid-row:3}}
 
 .ex .demo.big{width:min(92vw,720px);grid-row:auto}
+.demo.vid{aspect-ratio:3/4}
+.demo video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 60%}
+.ex .demo.vid.big,.demo.vid.big{width:min(92vw,52vh);aspect-ratio:9/16}
+.demo.vid.big video{object-fit:contain;background:#000}
+@media (max-width:560px){.ex .demo.vid{width:min(100%,300px);aspect-ratio:3/4;justify-self:center}}
 /* 分区 */
 section.part{margin-top:34px}
 section.part>h2{font-size:22px;font-weight:900;margin-bottom:4px}
@@ -225,7 +230,7 @@ section.part,#session{scroll-margin-top:96px}
       <div class="stat"><b class="num">82</b><small>体重 kg（164斤）</small></div>
       <div class="stat"><b class="num">22.5</b><small>卧推 kg（空杆+2.5）</small></div>
     </div>
-    <p class="lede">按你现在的力量水平（卧推空杆+2.5 kg）从新手起步：上肢、下肢各练 2 次，另外 2 天只做有氧和核心，周一休息。同一个部位两次训练之间至少隔 2 天，上肢练完第二天练下肢，正好互相恢复。全部是自由重量和健身房常见的下拉、划船器械，每个动作都写了第一次该用多重，做完还能多做 3 个以上就下次加。</p>
+    <p class="lede">按「要自律」那条视频的分化来练：一天只练一个部位，每个动作 4 组、每组 10–12 次。11 月 14 日（练肩）算第 1 天，7 天一轮：肩 → 手臂 → 腿＋腹 → 胸 → 背 → 有氧 → 休息。重量按你现在的力量写（卧推空杆+2.5 kg），每组做完还能多做 3 个以上，下次就加重。每个动作上面那段视频就是从原视频里截下来的，点一下放大看。</p>
   </header>
 
   <nav class="week" aria-label="一周安排">
@@ -350,6 +355,27 @@ section.part,#session{scroll-margin-top:96px}
 <script>
 // 动作要点：准备 / 握法 / 过程 / 呼吸 / 别犯
 const TIPS = {
+ "v_ohp":{准备:"靠背调到 80–90°，屁股和后背贴紧，哑铃先放大腿上再踢起到肩旁",握法:"掌心朝前，手肘在哑铃正下方",过程:"从耳朵高度往头顶推，推到两只哑铃快碰头，再慢慢放回耳朵旁",呼吸:"推起呼气，下放吸气",别犯:"腰拱起来离开靠背、下放太低到肩膀以下（右肩容易滑）、耸肩"},
+ "v_lateral":{准备:"坐凳子边或站着，身体微微前倾",握法:"掌心朝下，手肘微弯固定",过程:"用手肘带着往两边抬到和肩一样高，停半秒，慢慢放下",呼吸:"抬起呼气，放下吸气",别犯:"耸肩、甩身体借力、抬过肩"},
+ "v_arnold":{准备:"坐直靠背，哑铃举在胸前，掌心朝自己",握法:"一开始掌心朝脸，推起过程中转到掌心朝前",过程:"边往上推边把手腕往外转，顶端掌心朝前；下放时再转回来",呼吸:"推起呼气，下放吸气",别犯:"转得太快、手肘往后打开太多（右肩脱位的姿势，手肘保持在身体前面一点）"},
+ "v_rearfly":{准备:"面朝蝴蝶机坐，胸口贴靠垫，把手调到最前面",握法:"掌心相对握竖把手，手肘微弯",过程:"手臂往两边打开，打到和身体在一条线就停，慢慢收回",呼吸:"打开呼气，收回吸气",别犯:"手往身体后面打开太多、耸肩、用腰往后仰借力"},
+ "v_curl":{准备:"站直，两手各拿一只哑铃垂在身体两侧",握法:"掌心朝前",过程:"大臂贴住身体不动，弯起来到肩前，挤一下二头，再慢慢放到底",呼吸:"弯起呼气，放下吸气",别犯:"身体前后晃、手肘往前跑、放一半就起"},
+ "v_hammer":{准备:"站直，哑铃垂在身体两侧",握法:"掌心相对，像拿锤子",过程:"大臂不动，弯到哑铃靠近肩膀，慢慢放下",呼吸:"弯起呼气，放下吸气",别犯:"甩、耸肩、手腕弯"},
+ "v_pushdown":{准备:"面对滑轮站，绳索挂最高，身体微微前倾",握法:"双手握绳子两头，掌心相对",过程:"大臂夹住身体，只动小臂往下压，到底把绳子往两边分开，慢慢回到手肘 90°",呼吸:"下压呼气，放回吸气",别犯:"大臂跟着动、身体往下压借力"},
+ "v_ohext":{准备:"背对滑轮，绳索挂低位，把绳子拉到头后，往前跨一步站稳",握法:"双手握绳，掌心相对",过程:"大臂贴着耳朵指向上方不动，小臂往上伸直，再慢慢弯回头后",呼吸:"伸直呼气，弯回吸气",别犯:"大臂往外打开、腰往前顶；右肩举过头不舒服就换绳索下压"},
+ "v_squat":{准备:"杠铃放在斜方肌上（不是脖子上），脚与肩同宽，脚尖稍微朝外",握法:"握距比肩宽，手肘往下压，把上背夹紧",过程:"屁股往后往下坐，膝盖和脚尖同方向，蹲到大腿和地面平行，脚跟发力站起来",呼吸:"下蹲前吸一大口气憋住，站起过了最难点再呼气",别犯:"膝盖往里扣、脚跟离地、低头弓背；右肩握杠紧张就把握距放宽"},
+ "v_rdl":{准备:"站直拿杠铃，脚与髋同宽",握法:"正握，比腿稍宽",过程:"膝盖微弯固定，屁股往后推，杠铃贴着大腿往下滑到膝盖下面，感觉大腿后侧拉紧就站起来",呼吸:"下放吸气，站起呼气",别犯:"弓背、杠铃离开腿、蹲下去变成深蹲"},
+ "v_lunge":{准备:"背对凳子，一只脚的脚背搭在凳子上，前脚往前迈出一大步",握法:"两手各拿哑铃垂在身体两侧（先徒手也行）",过程:"后膝往地面方向下，前腿大腿下到接近平行，前脚跟发力站起来",呼吸:"下去吸气，起来呼气",别犯:"前膝往里扣、身体前倒、站太近导致膝盖顶出脚尖很多"},
+ "v_crunch":{准备:"躺在卷腹凳或垫子上，膝盖弯起",握法:"双手轻放耳朵旁",过程:"下背贴住，只把肩胛卷离凳子，顶端停 1 秒，慢慢放回",呼吸:"卷起呼气，放下吸气",别犯:"手拽脖子、整个人坐起来"},
+ "v_sidecrunch":{准备:"侧躺或身体斜过来，膝盖弯",握法:"双手放耳朵旁",过程:"肋骨往髋部方向侧卷，挤一下腹部侧边，慢慢回",呼吸:"卷起呼气，放下吸气",别犯:"用手拽头、甩"},
+ "v_bench":{准备:"躺平，眼睛在杠铃正下方，肩胛往中间往下夹紧，脚踩实地面",握法:"握距比肩宽一拳，手腕立直",过程:"杠铃慢慢落到胸下沿，手肘和身体约 45°，再推回起点",呼吸:"下放吸气，推起呼气",别犯:"屁股离凳、手肘打开到 90°、杠铃在胸口弹起；右肩不舒服就别放太低"},
+ "v_incline":{准备:"凳子调 30°，哑铃放大腿上再躺下",握法:"掌心朝前或稍微朝内",过程:"从上胸两侧往上推，顶端两只哑铃靠近，慢慢放到手肘略低于身体",呼吸:"推起呼气，下放吸气",别犯:"凳子调太高变成推肩、下放太深"},
+ "v_fly":{准备:"坐蝴蝶机，座椅调到把手和胸口一样高，背贴靠垫",握法:"握把手，手肘微弯固定",过程:"像抱大树一样往中间夹，两手碰头停 1 秒，慢慢打开",呼吸:"夹起呼气，打开吸气",别犯:"打开时手臂跑到身体后面（右肩危险姿势）、背离开靠垫"},
+ "v_pushup":{准备:"手撑地比肩宽一点，身体从头到脚一条直线",握法:"手指朝前，手肘往后约 45°",过程:"胸口下到离地一拳，再推起来；做不动就换跪姿接着做",呼吸:"下去吸气，推起呼气",别犯:"塌腰、屁股翘、只动头"},
+ "v_pulldown":{准备:"坐好，腿卡住挡板",握法:"握器械把手，掌心朝前或相对",过程:"先沉肩，再用手肘往下往后拉到把手接近上胸，慢慢放回",呼吸:"下拉呼气，放回吸气",别犯:"身体后仰太多、手臂发力、放回时耸肩"},
+ "v_row":{准备:"坐好，胸口贴住前面的靠垫",握法:"握把手",过程:"手肘往后拉，拉到底肩胛往中间夹，停 1 秒，慢慢放回",呼吸:"拉起呼气，放回吸气",别犯:"胸离开靠垫用身体往后拽、耸肩"},
+ "v_dbrow":{准备:"一只手撑在哑铃架或凳子上，身体前倾，背挺直",握法:"另一只手握哑铃，掌心朝身体",过程:"手肘贴身体往后上方拉，哑铃往裤兜方向走，慢慢放下",呼吸:"拉起呼气，放下吸气",别犯:"转身体借力、弓背"},
+ "v_straight":{准备:"面对滑轮站，绳子或直杆挂最高，往后退一步，身体微微前倾",握法:"双手握住，手臂伸直，手肘微弯固定",过程:"用背的力量把手从头顶前方压到大腿前，停 1 秒，慢慢回去",呼吸:"下压呼气，放回吸气",别犯:"弯手肘变成下压三头、身体往下压借力"},
  "Decline_Dumbbell_Bench_Press":{准备:"凳子往下斜 15–30°（头低脚高），脚背勾住凳子前端的滚轴，坐好后先把哑铃放在大腿上再躺下",握法:"掌心朝前，或稍微朝内转一点（更护肩）",过程:"哑铃从下胸两侧往上推，推到上方两只哑铃靠近，慢慢放到手肘略低于身体",呼吸:"推起呼气，下放吸气",别犯:"斜度太大头充血、下放太深、起身时直接甩哑铃（先放回大腿再坐起来）"},
  "Cable_Crossover":{准备:"两边滑轮调到最高，站中间，一只脚往前跨半步，身体稍微前倾",握法:"掌心朝下或相对，手肘一直保持微弯，不要伸直",过程:"从斜上方往下、往里拉，两手在肚脐前方合拢，停 1 秒挤一下胸，再慢慢放回去",呼吸:"往下拉呼气，放回吸气",别犯:"放回时手臂打开到身体后面（右肩容易脱位的姿势，到身体两侧就停）、用重量甩、弯腰变成用手臂压"},
  "Dead_Bug@noarm":{准备:"仰躺，膝盖弯 90° 抬起，小腿和地面平行",握法:"两只手平放在身体两侧地上，全程不动（护右肩）",过程:"腰压紧地面，左右腿交替慢慢往前伸直，快碰地再收回",呼吸:"伸腿呼气，收回吸气",别犯:"腰离地、手撑地借力、憋气"},
@@ -605,7 +631,43 @@ const PLANS = {
       ["Hammer_Curls","锤式弯举","2×12","45 秒","5–6 kg/只","掌心相对，慢放"],
       ["Dumbbell_Bicep_Curl","哑铃弯举","2×12","45 秒","5–6 kg/只","大臂贴身不动，慢放"]
     ]},
-  rest:{tag:"休息",name:"休息",kind:"rest",note:"不去健身房，打球照常。4 点睡到 12 点刚好 8 小时，别熬更晚。",cardio:null,list:[]},
+  vShoulder:{tag:"肩",name:"第 1 天 · 肩",kind:"ball",warm:true,cool:"upper",cardio:"stair",note:"视频第三天的内容。先做弹力带热身把右肩转开，推肩、阿诺德推肩如果右肩发紧或有往前滑的感觉，当组停下，换回普通坐姿推举、重量减半。",
+    list:[
+      ["v_ohp","坐姿哑铃推肩（前束）","4×10–12","90 秒","5–7.5 kg/只","靠背调到接近直立，哑铃从耳朵旁推到头顶"],
+      ["v_lateral","哑铃侧平举（中束）","4×10–12","60 秒","3–4 kg/只","手肘微弯，抬到肩高，肩不要耸"],
+      ["v_arnold","阿诺德推肩（整个肩）","4×10–12","90 秒","4–5 kg/只","掌心朝自己开始，边推边转到掌心朝前"],
+      ["v_rearfly","蝴蝶机反向飞鸟（后束）","4×10–12","60 秒","10–15 kg","胸贴靠垫，手臂往两边打开到身体两侧就停"]
+    ]},
+  vArm:{tag:"手臂",name:"第 2 天 · 手臂",kind:"ball",warm:true,cool:"upper",cardio:"stair",note:"视频第四天的内容。二头两个、三头两个，每下都慢放，别甩。",
+    list:[
+      ["v_curl","哑铃二头弯举","4×10–12","60 秒","5–6 kg/只","大臂贴身不动，弯到顶挤一下再慢放"],
+      ["v_hammer","锤式弯举（肱肌）","4×10–12","60 秒","5–6 kg/只","掌心相对，像拿锤子一样往上弯"],
+      ["v_pushdown","绳索下压（三头）","4×10–12","60 秒","10–15 kg","大臂贴身，压到底把绳子往两边分开"],
+      ["v_ohext","绳索颈后臂屈伸（三头长头）","4×10–12","60 秒","7.5–10 kg","背对滑轮，大臂贴耳朵不动，只伸小臂"]
+    ]},
+  vLeg:{tag:"腿＋腹",name:"第 3 天 · 腿 + 腹",kind:"ball",cool:"lower",cardio:"bike",note:"视频第五天的内容。深蹲和硬拉先把动作做对，再慢慢加重量；腹部两个动作放在最后。",
+    list:[
+      ["v_squat","杠铃深蹲","4×10–12","2 分钟","20 kg（空杆）","脚与肩同宽，蹲到大腿平行，腰背挺直"],
+      ["v_rdl","杠铃罗马尼亚硬拉（大腿后侧）","4×10–12","90 秒","30 kg","膝盖微弯，屁股往后推，杠铃贴腿下到膝盖下面"],
+      ["v_lunge","哑铃箭步蹲（后脚搭凳）","4×10–12/边","60 秒","徒手或 5 kg/只","后脚背搭在凳子上，前腿发力蹲起"],
+      ["v_crunch","仰卧卷腹","4×12","45 秒","徒手","下背贴凳，只把肩胛卷起来"],
+      ["v_sidecrunch","侧身卷腹（腹部两侧）","4×12/边","45 秒","徒手","身体侧过来，肋骨往髋部方向卷"]
+    ]},
+  vChest:{tag:"胸",name:"第 4 天 · 胸",kind:"ball",warm:true,cool:"upper",cardio:"stair",note:"视频第一天的内容。卧推是主项，先做；最后俯卧撑做到力竭把胸彻底榨干。",
+    list:[
+      ["v_bench","杠铃卧推（胸部厚度）","4×10–12","2 分钟","22.5 kg","肩胛夹紧下沉，手肘约 45°，杠铃落到胸下沿再推起"],
+      ["v_incline","上斜哑铃卧推（上胸）","4×10–12","90 秒","8–10 kg/只","凳子 30°，下到手肘略低于身体"],
+      ["v_fly","蝴蝶机夹胸（胸外沿和中缝）","4×10–12","60 秒","15–20 kg","手肘微弯，往中间夹到两手碰头停 1 秒"],
+      ["v_pushup","俯卧撑","4×力竭","60 秒","徒手，做不动可以跪着","身体一条直线，胸口下到离地一拳"]
+    ]},
+  vBack:{tag:"背",name:"第 5 天 · 背",kind:"ball",warm:true,cool:"upper",cardio:"stair",note:"视频第二天的内容。先练宽度（下拉），再练厚度（划船），最后直臂下拉收尾。",
+    list:[
+      ["v_pulldown","器械高位下拉（背部宽度）","4×10–12","90 秒","25–30 kg","先沉肩，再把手肘往下往后拉"],
+      ["v_row","坐姿器械划船（背部厚度）","4×10–12","90 秒","25–30 kg","胸贴靠垫，拉到底肩胛往中间夹"],
+      ["v_dbrow","单臂哑铃划船（背部两侧）","4×10–12/边","60 秒","10–12 kg","一只手撑住，哑铃往裤兜方向拉"],
+      ["v_straight","直臂下拉（收紧整个背）","4×10–12","60 秒","10–15 kg","手臂伸直，从头顶压到大腿前"]
+    ]},
+  rest:{tag:"休息",name:"休息",kind:"rest",note:"不去健身房，让练了 5 天的肌肉长回来。可以出去走走，晚上早点睡，睡够 8 小时比多练一天有用。",cardio:null,list:[]},
   wedding:{tag:"婚宴",name:"休息 · 喝喜酒",kind:"rest",note:"今天不练，有氧也不补。席上喝酒的话中间多喝水，酒后别去健身房也别打球；晚上照常睡够 8 小时，周二上肢照常练。",cardio:null,list:[]}
 };
 // 指定日期临时改安排（key 格式 年-月-日）
@@ -613,8 +675,9 @@ const OVERRIDE = {"2026-10-11":"wedding","2026-10-13":"shoulderLeg","2026-10-14"
   "2026-10-15":"shoulderCardio","2026-10-16":"shoulderLeg","2026-10-17":"cardio","2026-10-18":"lowerA","2026-10-20":"upperReturn","2026-10-21":"upperReturn","2026-10-23":"lowerBsafe","2026-10-24":"upperReturn",
   "2026-11-04":"upperBback","2026-11-05":"lowerBback","2026-11-06":"cardioBack","2026-11-07":"lowerAback",
   "2026-11-09":"chestLower","2026-11-10":"backDay","2026-11-11":"lowerB"};
-// 周一=0
-const WEEK = ["rest","upperA","lowerB","cardio","upperB","lowerA","cardio"];
+// 7 天一轮，2026-11-14（练肩）= 第 1 天
+const CYCLE = ["vShoulder","vArm","vLeg","vChest","vBack","cardio","rest"];
+const CYCLE0 = new Date(2026,10,14);
 const WD = ["周一","周二","周三","周四","周五","周六","周日"];
 
 const now = new Date();
@@ -622,7 +685,7 @@ const base = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 const dateOf = i => { const d=new Date(base); d.setDate(base.getDate()+i); return d; };
 const wdIdx = d => (d.getDay()+6)%7;
 const key = d => d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
-const planKey = d => { const iso=d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); return OVERRIDE[iso]||WEEK[wdIdx(d)]; };
+const planKey = d => { const iso=d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); const n=Math.round((new Date(d.getFullYear(),d.getMonth(),d.getDate())-CYCLE0)/864e5); return OVERRIDE[iso]||CYCLE[((n%7)+7)%7]; };
 const store = {
   get(k){ try{ return JSON.parse(localStorage.getItem(k)||"null"); }catch(e){ return null; } },
   set(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
@@ -647,7 +710,7 @@ function exRow(uid, key, name, dose, rest, start, cue, checked){
   const id=key.split("@")[0], tip=TIPS[key]||TIPS[id];
   return `<div class="ex${checked?" done":""}">
     <input type="checkbox" id="${uid}" ${checked?"checked":""}><label class="ck" for="${uid}" aria-label="完成：${name}"></label>
-    <div class="demo" role="button" tabindex="0" aria-label="放大看${name}的动作"><img src="demo/${id}_0.jpg" alt="${name} 起始姿势"><img class="f2" src="demo/${id}_1.jpg" alt="${name} 结束姿势"><span class="tagd">${id==="Reverse_Hack_Squat"?"你健身房这台":"动作演示"}</span></div>
+    ${id.startsWith("v_")?`<div class="demo vid" role="button" tabindex="0" aria-label="放大看${name}的动作视频"><video src="clips/${id}.mp4" poster="clips/${id}.jpg" muted loop playsinline autoplay preload="metadata"></video><span class="tagd">视频截取</span></div>`:`<div class="demo" role="button" tabindex="0" aria-label="放大看${name}的动作"><img src="demo/${id}_0.jpg" alt="${name} 起始姿势"><img class="f2" src="demo/${id}_1.jpg" alt="${name} 结束姿势"><span class="tagd">${id==="Reverse_Hack_Squat"?"你健身房这台":"动作演示"}</span></div>`}
     <div class="nm">${name}</div>
     <div class="dose"><b>${dose}</b>${start?`<small class="st">${uid.startsWith("s")?"工具":"起始"} ${start}</small>`:""}${rest&&rest!=="—"?`<small>休息 ${rest}</small>`:""}</div>
     <p class="cue">${cue}</p>
@@ -659,7 +722,7 @@ function renderSession(){
   const d=dateOf(sel), wi=wdIdx(d), k=planKey(d), p=PLANS[k], dk=key(d);
   const saved=store.get("done:"+dk)||{};
   const pillCls={ball:"ball",rehab:"rehab",rest:"rest"}[p.kind];
-  const upper=k.startsWith("upper");
+  const upper=k.startsWith("upper")||!!p.warm;
   let n=0; const no=()=>"①②③④⑤"[n++];
   let html=`<div class="shead"><h2>${WD[wi]} · ${p.name}</h2><span class="pill ${pillCls}">${d.getMonth()+1}月${d.getDate()}日${sel===0?" · 今天":""}</span><span class="progress" id="prog"></span></div><p class="snote">${p.note}</p>`;
   if(upper){
